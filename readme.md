@@ -9,13 +9,15 @@ Stworzenie obrazu dockera na podstawie pliku ***.py***, umieszczenie go w Azure 
 * kubectl
 
 
+## Tworzenie obrazu docker
+
 #### 1. Pobieranie repozytorium 
 ```
 git clone https://github.com/kazura2/cloud_project 
 ```
 
-#### 2. Tworzenie obrazu dockera
-zbuduj obraz dockera z wcześniej stworzonej aplikacji
+
+#### 2. budowanie obrazu dockera z wcześniej stworzonej aplikacji
 ```
 docker build -t apka_python3 .
 ```
