@@ -1,5 +1,14 @@
 # Umieszczanie obrazów dockera za pomocą ACR na klastrze kubernetesa (AKS)
 
+### Opis
+Stworzenie obrazu dockera na podstawie pliku ***.py***, umieszczenie go w Azure Container Registry (ACR), a następnie użycie utworzonego kontenera w Azure Kubernetes Service (AKS)
+
+### wymagane zainstalowane narzędzia
+* Azure CLI
+* Docker
+* kubectl
+
+
 #### 1. Pobieranie repozytorium 
 ```
 git clone https://github.com/kazura2/cloud_project 
