@@ -1,57 +1,57 @@
 # Umieszczanie obrazów dockera za pomocą ACR na klastrze kubernetesa (AKS)
 
-### Pobieranie repozytorium 
+#### 1. Pobieranie repozytorium 
 ```
 git clone https://github.com/kazura2/cloud_project 
 ```
 
-### Tworzenie obrazu dockera
+#### 2. Tworzenie obrazu dockera
 zbuduj obraz dockera z wcześniej stworzonej aplikacji
 ```
 docker build -t apka_python3 .
 ```
 
 ## AZURE CLI
-### Tworzenie grupy
+#### 3. Tworzenie grupy
 ```
 az login
 az group create --name cloud_project --location eastus
 ```
 
-### Tworzenie ACR w CLI
+#### 4. Tworzenie ACR w CLI
 ```
 az acr create --name mojacrproject --resource-group cloud_project --sku basic
 az acr login --name mojacrproject
 ```
 
-### Dodawanie obrazu dockera do kontenera ACR
+#### 5. Dodawanie obrazu dockera do kontenera ACR
 ```
 docker tag apka_python3:latest mojacrproject.azurecr.io/python_hello_world:latest
 docker push mojacrproject.azurecr.io/python_hello_world:latest
 ```
 
 
-### Tworzenie klastra AKS w CLI
+#### 6. Tworzenie klastra AKS w CLI
 ```
 az aks create --resource-group cloud_project --name mojAKSproject --node-count 1 --generate-ssh-keys --attach-acr mojacrproject
 ```
 
-### Połączenie
+#### 7. Połączenie z klastrem
 ```
 az aks install-cli
 az aks get-credentials --resource-group cloud_project --name mojAKSproject
 ```
 
-### aby użyć kontenera ACR w klastrze AKS
+#### 8. Użycie kontenera ACR w klastrze AKS
 ```
 kubectl apply -f deployment.yaml
 ```
 
-### aby sprawdzić podname
+#### 9. Sprawdzanie podname
 ```
 get pods
 ```
-### aby sprawdzić czy skrypt w pythonie wykonuje sie wpisujemy komende
+#### 10. Aby sprawdzić czy skrypt w pythonie wykonuje sie wpisujemy komende
 ```
 kubectl logs [podname] -p
 ```
