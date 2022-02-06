@@ -15,15 +15,12 @@ docker build -t apka_python3 .
 ###Tworzenie grupy
 ```
 az login
-az group create --name cloud_project\
-    --location eastus
+az group create --name cloud_project --location eastus
 ```
 
 ###Tworzenie ACR w CLI
 ```
-az acr create --name mojacrproject\
---resource-group cloud_project\
---sku basic
+az acr create --name mojacrproject --resource-group cloud_project --sku basic
 az acr login --name mojacrproject
 ```
 
@@ -36,19 +33,13 @@ docker push mojacrproject.azurecr.io/python_hello_world:latest
 
 ###Tworzenie klastra AKS w CLI
 ```
-az aks create --resource-group cloud_project \
-    --name mojAKSproject \
-    --node-count 1 \
-    --generate-ssh-keys\
-    --attach-acr mojacrproject
+az aks create --resource-group cloud_project --name mojAKSproject --node-count 1 --generate-ssh-keys --attach-acr mojacrproject
 ```
 
 ###Połączenie
 ```
 az aks install-cli
-az aks get-credentials \
-   --resource-group cloud_project \
-   --name mojAKSproject
+az aks get-credentials --resource-group cloud_project --name mojAKSproject
 ```
 
 ###aby użyć kontenera ACR w klastrze AKS
