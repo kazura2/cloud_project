@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonhelloworld-deployment
+  labels:
+    app: pythonhelloworld-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pythonhelloworld
+  template:
+    metadata:
+      labels:
+        app: pythonhelloworld
+    spec:
+      containers:
+      - name: mojacrproject
+        image: mojacrproject.azurecr.io/python_hello_world:latest
+        ports:
+        - containerPort: 80
